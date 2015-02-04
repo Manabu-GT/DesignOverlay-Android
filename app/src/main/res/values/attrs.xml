@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="lineColor" format="color"/>
+    <attr name="lineWidth" format="dimension"/>
+    <declare-styleable name="GridView">
+        <attr name="girdSize" format="dimension"/>
+        <attr name="lineColor"/>
+        <attr name="lineWidth"/>
+    </declare-styleable>
+</resources>

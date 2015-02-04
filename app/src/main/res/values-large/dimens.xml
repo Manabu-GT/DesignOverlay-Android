@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Preference UI dimensions for larger screens. -->
+    <dimen name="preference_widget_width">56dp</dimen>
+</resources>

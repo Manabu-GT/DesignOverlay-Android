@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.SettingsActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:elevation="@dimen/tool_bar_elevation">
+        <TextView
+            android:id="@+id/app_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:drawablePadding="@dimen/horizontal_padding_small"
+            android:textSize="@dimen/text_size_medium"
+            android:text="@string/app_name"
+            android:textColor="@android:color/white"
+            android:drawableLeft="@drawable/ic_launcher"/>
+        <Switch android:id="@+id/grid_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/app_title"
+            android:layout_alignParentRight="true"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/horizontal_margin_medium"
+            android:text="@string/app_description"
+            android:textColor="@android:color/white"
+            android:layout_below="@id/app_title"/>
+    </RelativeLayout>
+
+    <fragment
+        android:id="@+id/fragment_settings"
+        android:name="com.ms_square.android.design.overlay.fragment.SettingsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

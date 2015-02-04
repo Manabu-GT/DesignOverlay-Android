@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- All values are based on the Android Design guidelines.
+     http://www.google.com/design/spec/material-design/introduction.html -->
+
+    <!-- Screen margins -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Status bar (http://www.google.com/design/spec/layout/structure.html#structure-system-bars) -->
+    <dimen name="status_bar_height">24dp</dimen>
+
+    <!-- Tool bar (former action bar) -->
+    <dimen name="tool_bar_elevation">8dp</dimen>
+    <dimen name="text_size_title_material_toolbar">20sp</dimen>
+
+    <!-- Navigation Bar (http://www.google.com/design/spec/layout/structure.html#structure-side-nav)
+    Nexus 4: 304dp
+    Nexus 5: 288dp
+    -->
+    <dimen name="navigation_drawer_width">304dp</dimen>
+
+    <!-- Floating action button (FAB) -->
+    <dimen name="fab_size">56dp</dimen>
+    <dimen name="fab_elevation">8dp</dimen>
+    <dimen name="fab_press_translation_z">9dp</dimen>
+
+    <!-- Text sizes -->
+    <dimen name="text_size_xsmall">12sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_xlarge">34sp</dimen>
+
+    <!-- Buttons -->
+
+    <!-- List Items (http://www.google.com/design/spec/components/lists.html#lists-specs) -->
+    <dimen name="list_item_height">48dp</dimen>
+    <dimen name="list_header_height">56dp</dimen>
+    <dimen name="list_horizontal_margin">16dp</dimen>
+    <dimen name="list_vertical_margin">8dp</dimen>
+    <dimen name="list_horizontal_item_left_margin">72dp</dimen>
+
+    <!-- Grid Items -->
+    <dimen name="grid_horizontal_margin">24dp</dimen>
+    <dimen name="grid_vertical_margin">16dp</dimen>
+
+    <!-- Card Views -->
+    <dimen name="card_round_corners">2dp</dimen>
+    <dimen name="card_horizontal_margin">8dp</dimen>
+    <dimen name="card_vertical_margin">8dp</dimen>
+    <dimen name="card_content_padding">16dp</dimen>
+    <dimen name="card_touch_raise">6dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+
+    <!-- Divider -->
+    <dimen name="divider_height">1dp</dimen>
+
+    <!-- General -->
+    <dimen name="horizontal_margin_xsmall">4dp</dimen>
+    <dimen name="vertical_margin_xsmall">4dp</dimen>
+    <dimen name="horizontal_margin_small">8dp</dimen>
+    <dimen name="vertical_margin_small">8dp</dimen>
+    <dimen name="horizontal_margin_medium">16dp</dimen>
+    <dimen name="vertical_margin_medium">16dp</dimen>
+    <dimen name="horizontal_margin_large">24dp</dimen>
+    <dimen name="vertical_margin_large">24dp</dimen>
+
+    <dimen name="horizontal_padding_xsmall">4dp</dimen>
+    <dimen name="vertical_padding_xsmall">4dp</dimen>
+    <dimen name="horizontal_padding_small">8dp</dimen>
+    <dimen name="vertical_padding_small">8dp</dimen>
+    <dimen name="horizontal_padding_medium">16dp</dimen>
+    <dimen name="vertical_padding_medium">16dp</dimen>
+    <dimen name="horizontal_padding_large">24dp</dimen>
+    <dimen name="vertical_padding_large">24dp</dimen>
+
+    <dimen name="pressed_elevation">6dp</dimen>
+
+</resources>

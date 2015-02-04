@@ -1,5 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- Minimum space to allocate to the left of a preference item for an icon.
+        This helps in aligning titles when some items have icons and some don't. When space is
+        at a premium, we don't pre-allocate any space. -->
+    <dimen name="preference_icon_minWidth">0dp</dimen>
+    <!-- Preference widget area width (to the left of the text) -->
+    <dimen name="preference_widget_width">48dp</dimen>
 </resources>

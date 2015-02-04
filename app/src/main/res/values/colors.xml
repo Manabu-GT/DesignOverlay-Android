@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main theme colors -->
+    <color name="primary">#2c363f</color>
+    <color name="primary_dark">#000000</color>
+</resources>

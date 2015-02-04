@@ -1,1 +1,4 @@
 /build
+
+# Fabric Plugin API Key
+/src/release/AndroidManifest.xml

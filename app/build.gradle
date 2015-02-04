@@ -1,18 +1,59 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+    maven { url 'http://Manabu-GT.github.com/android-util/mvn-repo' }
+}
+
+configurations.all {
+    // check for updates every build for changing modules
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion project.ANDROID_BUILD_SDK_VERSION
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+
+    //  Gets the revision number from the Git
+    def getRevision = { ->
+        try {
+            def stdout = new ByteArrayOutputStream()
+            exec {
+                commandLine 'git', 'rev-parse', 'HEAD'
+                standardOutput = stdout
+            }
+            // pick first six characters
+            return stdout.toString().trim().substring(0, 6)
+        } catch(Exception e) {
+            return ""
+        }
+    }
 
     defaultConfig {
         applicationId "com.ms_square.android.design.overlay"
-        minSdkVersion 9
-        targetSdkVersion 21
+        minSdkVersion project.ANDROID_BUILD_MIN_SDK_VERSION
+        targetSdkVersion project.ANDROID_BUILD_TARGET_SDK_VERSION
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
     }
     buildTypes {
+        debug {
+            // disable Crashlytics
+            buildConfigField "boolean", "USE_CRASHLYTICS", "false"
+            ext.enableCrashlytics = false
+
+            buildConfigField "String", "BUILD_NUMBER", "\"" + getRevision() + "\""
+        }
         release {
+            // enable Crashlytics
+            buildConfigField "boolean", "USE_CRASHLYTICS", "true"
+            ext.enableCrashlytics = true
+
+            buildConfigField "String", "BUILD_NUMBER", "\"" + getRevision() + "(R)\""
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -21,5 +62,39 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:21.0.3'
+    // Support libraries
+    compile "com.android.support:support-v4:${supportPackageVersion}"
+    compile "com.android.support:appcompat-v7:${supportPackageVersion}"
+    // to support annotations such as @NonNull
+    compile "com.android.support:support-annotations:${supportPackageVersion}"
+
+    // Android Annotaions Library
+    compile "org.androidannotations:androidannotations-api:${project.androidAnnotationsVersion}"
+    apt "org.androidannotations:androidannotations:${project.androidAnnotationsVersion}"
+
+    // EventBus
+    compile "de.greenrobot:eventbus:${project.eventBusVersion}"
+
+    // Timber for logging
+    compile "com.jakewharton.timber:timber:${project.timberVersion}"
+
+    // Android Utility Library
+    compile ("com.ms.square:android-util:${project.androidUtilVersion}") {
+        // tell Gradle to check for updated versions every time
+        changing = true;
+    }
+
+    // Crashlytics
+    compile('com.crashlytics.sdk.android:crashlytics:2.2.1@aar') {
+        transitive = true;
+    }
+}
+
+// for Android Annotations
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0].processResources.manifestFile
+        // to use android product flavors to change packageName
+        resourcePackageName android.defaultConfig.applicationId
+    }
 }

@@ -1,19 +1,14 @@
+# Local configuration file (sdk path, etc)
 local.properties
-gradle.properties
+keystore.properties
 
 # Gradle
 .gradle
 build/
 
-# Android Studio
+# Android Studio Project files
 *.iml
-!.idea/runConfigurations/*
-.idea/*.xml
-.idea/.name
-.idea/copyright/
-.idea/libraries/
-.idea/scopes/
-.idea/inspectionProfiles/
+.idea
 
-# Other
+# Windows thumbnail db
 .DS_Store

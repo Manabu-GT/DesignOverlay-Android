@@ -1,0 +1,54 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:key="pref_fullscreen"
+        android:defaultValue="false"
+        android:title="@string/pref_fullscreen_title"/>
+    <PreferenceCategory android:title="@string/pref_category_design">
+        <CheckBoxPreference
+            android:key="pref_design_image_enabled"
+            android:defaultValue="true"
+            android:title="@string/pref_design_enabled_title" />
+        <com.ms_square.android.design.overlay.view.ImagePreference
+            android:key="pref_design_image_uri"
+            android:title="@string/pref_design_image_title"
+            android:summary="@string/pref_design_image_summary"
+            android:widgetLayout="@layout/pref_widget_layout_image"
+            android:dependency="pref_design_image_enabled"/>
+        <com.ms_square.android.design.overlay.view.SeekBarPreference
+            android:key="pref_design_image_alpha"
+            android:title="@string/pref_design_image_alpha_title"
+            android:defaultValue="100"
+            android:dependency="pref_design_image_enabled"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_category_grid">
+        <CheckBoxPreference
+            android:key="pref_grid_enabled"
+            android:defaultValue="true"
+            android:title="@string/pref_grid_enabled_title" />
+        <ListPreference
+            android:key="pref_grid_size"
+            android:title="@string/pref_grid_size_title"
+            android:entries="@array/grid_size_entries"
+            android:entryValues="@array/grid_size_entry_values"
+            android:defaultValue="4"
+            android:dependency="pref_grid_enabled"/>
+        <Preference
+            android:key="pref_grid_color"
+            android:title="@string/pref_grid_color_title"
+            android:summary="@string/pref_grid_color_summary"
+            android:dependency="pref_grid_enabled"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_category_about">
+        <Preference
+            android:title="@string/pref_author_title"
+            android:summary="@string/pref_author_summary">
+            <intent android:action="android.intent.action.VIEW"
+                android:data="https://play.google.com/store/apps/developer?id=Manabu" />
+        </Preference>
+        <Preference
+            android:key="pref_app_version"
+            android:title="@string/pref_app_version_title"
+            android:enabled="false"
+            android:persistent="false"/>
+    </PreferenceCategory>
+</PreferenceScreen>

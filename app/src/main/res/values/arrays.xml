@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="grid_size_entries">
+        <item>4dp</item>
+        <item>8dp</item>
+        <item>16dp</item>
+        <item>32dp</item>
+    </string-array>
+    <string-array name="grid_size_entry_values">
+        <item>4</item>
+        <item>8</item>
+        <item>16</item>
+        <item>32</item>
+    </string-array>
+</resources>
