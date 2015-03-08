@@ -4,5 +4,5 @@
     <color name="primary">#2c363f</color>
     <color name="primary_dark">#000000</color>
 
-    <color name="grid_default_line_color">#32cd32</color>
+    <color name="grid_default_line_color">#ff32cd32</color>
 </resources>
