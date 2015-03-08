@@ -61,6 +61,10 @@ public class PrefUtil {
                 Float.parseFloat(getSharedPrefs(context).getString(PREF_GRID_SIZE, "4")));
     }
 
+    public static int getGridColor(Context context) {
+        return getSharedPrefs(context).getInt(PREF_GRID_COLOR, 0xff32cd32);
+    }
+
     public static void registerOnSharedPreferenceChangeListener(Context context,
                                                                 SharedPreferences.OnSharedPreferenceChangeListener listener) {
         getSharedPrefs(context).registerOnSharedPreferenceChangeListener(listener);

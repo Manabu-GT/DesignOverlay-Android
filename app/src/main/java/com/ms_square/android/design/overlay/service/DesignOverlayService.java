@@ -100,6 +100,8 @@ public class DesignOverlayService extends Service {
         updateImageVisibility();
         updateImageAlpha();
         updateImage();
+        updateGridSize();
+        updateGridColor();
         updateGridVisibility();
         mWindowManager.addView(mRootView, createDefaultSystemWindowParams(PrefUtil.isFullScreen(this)));
     }
@@ -160,6 +162,18 @@ public class DesignOverlayService extends Service {
         if (mDesignImgView != null) {
             mDesignImgView.setVisibility(PrefUtil.isDesignImageEnabled(DesignOverlayService.this) ?
                     View.VISIBLE : View.INVISIBLE);
+        }
+    }
+
+    private void updateGridSize() {
+        if (mGridView != null) {
+            mGridView.updateGridSize(PrefUtil.getGridSize(DesignOverlayService.this));
+        }
+    }
+
+    private void updateGridColor() {
+        if (mGridView != null) {
+            mGridView.updateGridColor(PrefUtil.getGridColor(DesignOverlayService.this));
         }
     }
 
@@ -238,12 +252,11 @@ public class DesignOverlayService extends Service {
                     break;
                 }
                 case PrefUtil.PREF_GRID_SIZE: {
-                    if (mGridView != null) {
-                        mGridView.updateGridSize(PrefUtil.getGridSize(DesignOverlayService.this));
-                    }
+                    updateGridSize();
                     break;
                 }
                 case PrefUtil.PREF_GRID_COLOR: {
+                    updateGridColor();
                     break;
                 }
             }

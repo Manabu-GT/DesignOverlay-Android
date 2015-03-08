@@ -27,7 +27,7 @@
     <string name="pref_grid_size_title">Size</string>
     <string name="pref_grid_size_summary">Size: %1$s dp</string>
     <string name="pref_grid_color_title">Color</string>
-    <string name="pref_grid_color_summary">Color</string>
+    <string name="pref_grid_color_summary">Choose grid line color</string>
 
     <string name="pref_author_title">Author</string>
     <string name="pref_author_summary">Manabu</string>

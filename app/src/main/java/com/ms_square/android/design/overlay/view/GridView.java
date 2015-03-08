@@ -9,7 +9,6 @@ import android.view.View;
 
 import com.ms.square.android.util.UIUtil;
 import com.ms_square.android.design.overlay.R;
-import com.ms_square.android.design.overlay.util.PrefUtil;
 
 import timber.log.Timber;
 
@@ -39,8 +38,6 @@ public class GridView extends View {
         mPaint.setStrokeWidth(typedArray.getDimension(R.styleable.GridView_lineWidth, defaultLineWidth));
         typedArray.recycle();
 
-        mGridSize = PrefUtil.getGridSize(context);
-
         mPaint.setStyle(Paint.Style.STROKE);
     }
 
@@ -51,6 +48,11 @@ public class GridView extends View {
     public void updateGridSize(int newGridSize) {
         mGridSize = newGridSize;
         updateGrid(getWidth(), getHeight());
+        invalidate();
+    }
+
+    public void updateGridColor(int newColor) {
+        mPaint.setColor(newColor);
         invalidate();
     }
 

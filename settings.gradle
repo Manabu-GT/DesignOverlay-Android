@@ -1,1 +1,2 @@
-include ':app'
+include ':app', ':ColorPickerPreference'
+project(':ColorPickerPreference').projectDir = new File('app/libs/android-ColorPickerPreference/ColorPickerPreference')
