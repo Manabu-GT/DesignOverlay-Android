@@ -1,10 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
-apply plugin: 'io.fabric'
-
 repositories {
-    maven { url 'https://maven.fabric.io/public' }
     maven { url 'http://Manabu-GT.github.com/android-util/mvn-repo' }
 }
 
@@ -56,20 +53,12 @@ android {
 
     buildTypes {
         debug {
-            // disable Crashlytics
-            buildConfigField "boolean", "USE_CRASHLYTICS", "false"
-            ext.enableCrashlytics = false
-
             buildConfigField "String", "BUILD_NUMBER", "\"" + getRevision() + "\""
 
             zipAlignEnabled true
             minifyEnabled false
         }
         release {
-            // enable Crashlytics
-            buildConfigField "boolean", "USE_CRASHLYTICS", "true"
-            ext.enableCrashlytics = true
-
             buildConfigField "String", "BUILD_NUMBER", "\"" + getRevision() + "(R)\""
 
             minifyEnabled false
@@ -107,11 +96,6 @@ dependencies {
     compile ("com.ms.square:android-util:${project.androidUtilVersion}") {
         // tell Gradle to check for updated versions every time
         changing = true;
-    }
-
-    // Crashlytics
-    compile('com.crashlytics.sdk.android:crashlytics:2.2.1@aar') {
-        transitive = true;
     }
 }
 
