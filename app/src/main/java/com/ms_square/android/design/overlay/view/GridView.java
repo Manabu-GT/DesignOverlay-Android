@@ -34,7 +34,7 @@ public class GridView extends View {
         final float defaultLineWidth = UIUtil.convertToPixelFromDip(context, 1f); // 1dp
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.GridView);
-        mPaint.setColor(typedArray.getColor(R.styleable.GridView_lineColor, 0xff32cd32));
+        mPaint.setColor(typedArray.getColor(R.styleable.GridView_lineColor, 0x7732cd32));
         mPaint.setStrokeWidth(typedArray.getDimension(R.styleable.GridView_lineWidth, defaultLineWidth));
         typedArray.recycle();
 

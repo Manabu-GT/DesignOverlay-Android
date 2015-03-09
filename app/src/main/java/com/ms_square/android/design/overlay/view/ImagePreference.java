@@ -28,7 +28,9 @@ public class ImagePreference extends Preference {
     }
 
     public void updateImage(Bitmap bitmap) {
-        mImageView.setImageBitmap(bitmap);
+        if (mImageView != null) {
+            mImageView.setImageBitmap(bitmap);
+        }
         mBitmap = bitmap;
     }
 }

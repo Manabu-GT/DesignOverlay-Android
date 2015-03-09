@@ -2,7 +2,6 @@ package com.ms_square.android.design.overlay.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
@@ -25,13 +24,6 @@ public class SettingsActivity extends BaseActivity {
     public static Intent createIntent(Context context) {
         Intent intent = new Intent(context, SettingsActivity_.class);
         return intent;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        startService(DesignOverlayService.createIntent(this));
     }
 
     @AfterViews
