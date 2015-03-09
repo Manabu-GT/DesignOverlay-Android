@@ -1,6 +1,7 @@
 package com.ms_square.android.design.overlay.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -31,6 +32,8 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
 
     private static final int REQUEST_CODE_IMAGE = 10000;
 
+    private Context mAppContext;
+
     private ImagePreference mImagePreference;
 
     public static SettingsFragment newInstance() {
@@ -51,17 +54,19 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         // guidelines.
         bindPreferenceSummaryToValue(findPreference(PrefUtil.PREF_GRID_SIZE));
 
+        mAppContext = getActivity().getApplicationContext();
+
         mImagePreference = (ImagePreference) findPreference(PrefUtil.PREF_DESIGN_IMAGE_URI);
         mImagePreference.setOnPreferenceClickListener(this);
         // load image if already set
-        Uri imageUri = PrefUtil.getDesignImageUri(getActivity());
+        Uri imageUri = PrefUtil.getDesignImageUri(mAppContext);
         if (imageUri != null) {
             loadDesignImage(imageUri);
         }
 
         // Set application version
         Preference appVer = findPreference("pref_app_version");
-        appVer.setSummary(AppUtil.getVersion(getActivity()) + " - " + BuildConfig.BUILD_NUMBER);
+        appVer.setSummary(AppUtil.getVersion(mAppContext) + " - " + BuildConfig.BUILD_NUMBER);
     }
 
     @Override
@@ -71,7 +76,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
                 final Uri uri = data.getData();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                     // needs to take the persistable permission for post kit-kat devices
-                    getActivity().getContentResolver().takePersistableUriPermission(uri,
+                    mAppContext.getContentResolver().takePersistableUriPermission(uri,
                             Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 }
                 loadDesignImage(uri);
@@ -107,7 +112,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
                 Bitmap bitmap = null;
                 InputStream stream = null;
                 try {
-                    stream = getActivity().getContentResolver().openInputStream(params[0]);
+                    stream = mAppContext.getContentResolver().openInputStream(params[0]);
                     bitmap = BitmapFactory.decodeStream(stream);
                 } catch (FileNotFoundException fe) {
                     Timber.w("File was not found:" + fe);
@@ -123,10 +128,10 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
             @Override
             protected void onSuccess(Bitmap bitmap) {
                 if (bitmap != null) {
-                    PrefUtil.setDesignImageUri(getActivity(), uri);
+                    PrefUtil.setDesignImageUri(mAppContext, uri);
                     mImagePreference.updateImage(bitmap);
                 } else {
-                    ToastMaster.showToast(getActivity(), getString(R.string.toast_bitmap_not_found), Toast.LENGTH_LONG);
+                    ToastMaster.showToast(mAppContext, getString(R.string.toast_bitmap_not_found), Toast.LENGTH_LONG);
                 }
             }
         }.execute(uri);
