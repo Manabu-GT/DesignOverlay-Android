@@ -28,7 +28,10 @@ public class ImagePreference extends Preference {
     }
 
     public void updateImage(Bitmap bitmap) {
-        mImageView.setImageBitmap(bitmap);
+        // onBindView might not have been called
+        if (mImageView != null) {
+            mImageView.setImageBitmap(bitmap);
+        }
         mBitmap = bitmap;
     }
 }

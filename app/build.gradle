@@ -1,10 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
-apply plugin: 'io.fabric'
-
 repositories {
-    maven { url 'https://maven.fabric.io/public' }
     maven { url 'http://Manabu-GT.github.com/android-util/mvn-repo' }
 }
 
@@ -39,23 +36,38 @@ android {
         versionCode 1
         versionName "1.0.0"
     }
+
+    signingConfigs {
+        release {
+            def Properties keyProps = new Properties()
+            // double check if keystore.properties exists to avoid exception
+            if(file("../keystore.properties").exists()) {
+                keyProps.load(new FileInputStream(file('../keystore.properties')))
+            }
+            storeFile keyProps["storeFile"] != null ? file(keyProps["storeFile"]) : null
+            storePassword keyProps["storePassword"]
+            keyAlias keyProps["keyAlias"]
+            keyPassword keyProps["keyPassword"]
+        }
+    }
+
     buildTypes {
         debug {
-            // disable Crashlytics
-            buildConfigField "boolean", "USE_CRASHLYTICS", "false"
-            ext.enableCrashlytics = false
-
             buildConfigField "String", "BUILD_NUMBER", "\"" + getRevision() + "\""
+
+            zipAlignEnabled true
+            minifyEnabled false
         }
         release {
-            // enable Crashlytics
-            buildConfigField "boolean", "USE_CRASHLYTICS", "true"
-            ext.enableCrashlytics = true
-
             buildConfigField "String", "BUILD_NUMBER", "\"" + getRevision() + "(R)\""
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            // check if keystore.properties exists in the root
+            if(file("../keystore.properties").exists()) {
+                signingConfig signingConfigs.release
+            }
         }
     }
 }
@@ -84,11 +96,6 @@ dependencies {
     compile ("com.ms.square:android-util:${project.androidUtilVersion}") {
         // tell Gradle to check for updated versions every time
         changing = true;
-    }
-
-    // Crashlytics
-    compile('com.crashlytics.sdk.android:crashlytics:2.2.1@aar') {
-        transitive = true;
     }
 }
 

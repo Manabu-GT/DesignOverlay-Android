@@ -1,10 +1,12 @@
 package com.ms_square.android.design.overlay.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -30,6 +32,8 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
 
     private static final int REQUEST_CODE_IMAGE = 10000;
 
+    private Context mAppContext;
+
     private ImagePreference mImagePreference;
 
     public static SettingsFragment newInstance() {
@@ -50,29 +54,32 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         // guidelines.
         bindPreferenceSummaryToValue(findPreference(PrefUtil.PREF_GRID_SIZE));
 
+        mAppContext = getActivity().getApplicationContext();
+
         mImagePreference = (ImagePreference) findPreference(PrefUtil.PREF_DESIGN_IMAGE_URI);
         mImagePreference.setOnPreferenceClickListener(this);
         // load image if already set
-        Uri imageUri = PrefUtil.getDesignImageUri(getActivity());
+        Uri imageUri = PrefUtil.getDesignImageUri(mAppContext);
         if (imageUri != null) {
             loadDesignImage(imageUri);
         }
 
         // Set application version
         Preference appVer = findPreference("pref_app_version");
-        appVer.setSummary(AppUtil.getVersion(getActivity()) + " - " + BuildConfig.BUILD_NUMBER);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
+        appVer.setSummary(AppUtil.getVersion(mAppContext) + " - " + BuildConfig.BUILD_NUMBER);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_IMAGE) {
             if (resultCode == Activity.RESULT_OK && data != null) {
-                loadDesignImage(data.getData());
+                final Uri uri = data.getData();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    // needs to take the persistable permission for post kit-kat devices
+                    mAppContext.getContentResolver().takePersistableUriPermission(uri,
+                            Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                }
+                loadDesignImage(uri);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -82,14 +89,17 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
     @Override
     public boolean onPreferenceClick(Preference preference) {
         if (PrefUtil.PREF_DESIGN_IMAGE_URI.equals(preference.getKey())) {
-            // results in permission error when reading
-//            Intent intent = new Intent();
-//            intent.setType("image/*");
-//            intent.setAction(Intent.ACTION_GET_CONTENT);
-//            intent.addCategory(Intent.CATEGORY_OPENABLE);
-            // workaround
-            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(intent, REQUEST_CODE_IMAGE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                intent.setType("image/*");
+                startActivityForResult(intent, REQUEST_CODE_IMAGE);
+            } else {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(Intent.createChooser(intent,
+                        getString(R.string.intent_chooser_choose_image)), REQUEST_CODE_IMAGE);
+            }
             return true;
         }
         return false;
@@ -102,7 +112,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
                 Bitmap bitmap = null;
                 InputStream stream = null;
                 try {
-                    stream = getActivity().getContentResolver().openInputStream(params[0]);
+                    stream = mAppContext.getContentResolver().openInputStream(params[0]);
                     bitmap = BitmapFactory.decodeStream(stream);
                 } catch (FileNotFoundException fe) {
                     Timber.w("File was not found:" + fe);
@@ -118,10 +128,10 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
             @Override
             protected void onSuccess(Bitmap bitmap) {
                 if (bitmap != null) {
-                    PrefUtil.setDesignImageUri(getActivity(), uri);
+                    PrefUtil.setDesignImageUri(mAppContext, uri);
                     mImagePreference.updateImage(bitmap);
                 } else {
-                    ToastMaster.showToast(getActivity(), getString(R.string.toast_bitmap_not_found), Toast.LENGTH_LONG);
+                    ToastMaster.showToast(mAppContext, getString(R.string.toast_bitmap_not_found), Toast.LENGTH_LONG);
                 }
             }
         }.execute(uri);
@@ -150,7 +160,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
      */
-    private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
+    private static final Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();

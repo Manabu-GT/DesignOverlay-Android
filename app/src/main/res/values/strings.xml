@@ -4,8 +4,6 @@
     <string name="app_name">DesignOverlay</string>
     <string name="app_description">DesignOverlay will show design and grid overlay over application windows to help you verify your application layout and design.</string>
 
-    <string name="action_settings">Settings</string>
-
     <string name="notification_title">DesignOverlay</string>
     <string name="notification_small_text">Touch for Settings</string>
     <string name="notification_big_text">Touch for Settings</string>
@@ -33,6 +31,8 @@
     <string name="pref_author_summary">Manabu</string>
 
     <string name="pref_app_version_title">Version</string>
+
+    <string name="intent_chooser_choose_image">Choose an image to overlay</string>
 
     <string name="toast_bitmap_not_found">Error! Could not retrieve image.</string>
 </resources>

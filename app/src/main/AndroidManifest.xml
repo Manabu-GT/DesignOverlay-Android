@@ -5,8 +5,6 @@
 
     <!-- To overlay view above all the application UIs -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <!-- To access image files -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".app.DesignOverlayApplication"
@@ -14,7 +12,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        tools:replace="android:icon">
+        tools:replace="android:icon,android:label">
         <activity
             android:name=".activity.SettingsActivity_"
             android:label="@string/app_name"
@@ -25,6 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- to remove sample activity from the library -->
+        <activity android:name="net.margaritov.preference.colorpicker.Test" tools:node="remove"/>
 
         <service android:name=".service.DesignOverlayService" />
 

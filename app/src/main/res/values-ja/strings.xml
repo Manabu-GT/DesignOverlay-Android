@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DesignOverlay</string>
+
+    <string name="notification_title">DesignOverlay</string>
+    <string name="notification_small_text">タップするとアプリの設定画面に遷移します</string>
+    <string name="notification_big_text">タップするとアプリの設定画面に遷移します</string>
+    <string name="notification_action_dismiss">終了</string>
+
+    <string name="pref_category_design">デザイン</string>
+    <string name="pref_category_grid">グリッド線</string>
+    <string name="pref_category_about">このアプリについて</string>
+
+    <string name="pref_fullscreen_title">全画面表示</string>
+
+    <string name="pref_design_enabled_title">表示</string>
+    <string name="pref_design_image_title">画像</string>
+    <string name="pref_design_image_summary">オーバーレイ表示する画像を選択</string>
+    <string name="pref_design_image_alpha_title">透明度</string>
+    <string name="pref_design_image_alpha_summary">透明度: %1$s %</string>
+
+    <string name="pref_grid_enabled_title">表示</string>
+    <string name="pref_grid_size_title">サイズ</string>
+    <string name="pref_grid_size_summary">サイズ: %1$s dp</string>
+    <string name="pref_grid_color_title">色</string>
+    <string name="pref_grid_color_summary">グリッド線の色を選択</string>
+
+    <string name="pref_author_title">作者</string>
+    <string name="pref_author_summary">Manabu</string>
+
+    <string name="pref_app_version_title">バージョン</string>
+
+    <string name="intent_chooser_choose_image">オーバーレイ表示する画像を選択してください</string>
+
+    <string name="toast_bitmap_not_found">エラー！画像が取得できませんでした。</string>
+    <string name="app_description">このアプリはデザイン画像やグリッド線をAndroidのシステムレイヤー上にオーバーレイ表示することで、開発者がデザインイメージにアプリのレイアウトを合わせる作業を助けてくれます</string>
+</resources>

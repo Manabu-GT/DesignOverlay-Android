@@ -139,7 +139,9 @@ public class DesignOverlayService extends Service {
 
                     @Override
                     protected void onPostExecute(Bitmap bitmap) {
-                        mDesignImgView.setImageBitmap(bitmap);
+                        if (mDesignImgView != null) {
+                            mDesignImgView.setImageBitmap(bitmap);
+                        }
                     }
                 }.execute(uri);
             }
