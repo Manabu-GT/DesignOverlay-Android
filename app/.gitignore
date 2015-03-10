@@ -1,5 +1,5 @@
 /build
-ms-square-release.keystore
+ms_square-release-key.keystore
 
 # Fabric Plugin API Key
 /src/release/AndroidManifest.xml
