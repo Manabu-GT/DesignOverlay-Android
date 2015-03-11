@@ -18,13 +18,13 @@ API Level 14 (ICS) and above.
 Why is this useful?
 ---------------------
 ### Designers
-Just share pixel-perfect design images with a develper, no longer need to create a redline document which specifies layout parameters of every UI element.
+Just share pixel-perfect design images with a developer, no longer need to create a redline document which specifies layout parameters of every UI element.
 
 Note: 
 Developers probably also need font styling information to implement your design since font style is hard to guess based on just images.
 
 ### Developers
-With the design images shared by a designer, you can easily tweak the layout parameters using design image and grid overlay this app provides and verify design implementation. During that process, I hightly recommend using [Mirror Plugin for Android Studio][2] provided by jimulabs to even facilitate the process.
+With the design images shared by a designer, you can easily tweak the layout parameters using design image and grid overlay this app provides and verify design implementation. During that process, I highly recommend using [Mirror Plugin for Android Studio][2] provided by jimulabs to even facilitate the process.
 
 How to use
 ------------
