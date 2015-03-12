@@ -32,6 +32,8 @@ How to use
 - Select an image to overlay.
 - Go to your app and see if the layout matches with the design image.
 
+<img alt="app screenshot" src="art/app_screenshot.png" />
+
 These are just examples of how the overlay will look over an Etsy app.
 (I'm using Etsy as an example since it's a great app.)
 
