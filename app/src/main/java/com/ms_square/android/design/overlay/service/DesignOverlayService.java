@@ -189,7 +189,7 @@ public class DesignOverlayService extends Service {
     private void showNotification() {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(getString(R.string.notification_big_text)))
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setOngoing(true)
                 .setContentTitle(getString(R.string.notification_title))
                 .setContentText(getString(R.string.notification_small_text))
