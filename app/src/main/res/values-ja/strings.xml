@@ -34,5 +34,5 @@
     <string name="intent_chooser_choose_image">オーバーレイ表示する画像を選択してください</string>
 
     <string name="toast_bitmap_not_found">エラー！画像が取得できませんでした。</string>
-    <string name="app_description">このアプリはデザイン画像やグリッド線をAndroidのシステムレイヤー上にオーバーレイ表示することで、開発者がデザインイメージにアプリのレイアウトを合わせる作業を助けてくれます</string>
+    <string name="app_description">このアプリはデザイン画像やグリッド線をAndroidのシステムレイヤ上にオーバーレイ表示することで、開発者がデザインイメージにアプリのレイアウトを合わせる作業を助けてくれます</string>
 </resources>
