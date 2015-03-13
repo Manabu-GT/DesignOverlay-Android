@@ -62,7 +62,7 @@ public class PrefUtil {
     }
 
     public static int getGridColor(Context context) {
-        return getSharedPrefs(context).getInt(PREF_GRID_COLOR, 0xff32cd32);
+        return getSharedPrefs(context).getInt(PREF_GRID_COLOR, 0x7732cd32);
     }
 
     public static void registerOnSharedPreferenceChangeListener(Context context,
