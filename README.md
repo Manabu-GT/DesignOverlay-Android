@@ -34,6 +34,8 @@ How to use
 
 <img alt="app screenshot" src="art/app_screenshot.png" />
 
+[Live Demo] (https://appetize.io/app/x736nfpb8hzjuqrdt3bgzhddh0)
+
 These are just examples of how the overlay will look over an Etsy app.
 (I'm using Etsy as an example since it's a great app.)
 
