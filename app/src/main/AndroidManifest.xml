@@ -6,6 +6,9 @@
     <!-- To overlay view above all the application UIs -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
+    <!-- Looks this is needed to read Google+ photos -->
+    <uses-permission android:name="com.google.android.apps.photos.permission.GOOGLE_PHOTOS"/>
+
     <application
         android:name=".app.DesignOverlayApplication"
         android:allowBackup="true"
