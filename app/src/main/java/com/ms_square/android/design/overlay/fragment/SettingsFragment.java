@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +11,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.util.TypedValue;
 import android.widget.Toast;
 
 import com.ms.square.android.util.AppUtil;
@@ -19,6 +19,7 @@ import com.ms.square.android.util.ToastMaster;
 import com.ms_square.android.design.overlay.BuildConfig;
 import com.ms_square.android.design.overlay.R;
 import com.ms_square.android.design.overlay.task.SafeAsyncTask;
+import com.ms_square.android.design.overlay.util.ImageUtil;
 import com.ms_square.android.design.overlay.util.PrefUtil;
 import com.ms_square.android.design.overlay.view.ImagePreference;
 
@@ -35,6 +36,8 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
     private Context mAppContext;
 
     private ImagePreference mImagePreference;
+
+    private int mImageSize;
 
     public static SettingsFragment newInstance() {
         SettingsFragment fragment = new SettingsFragment();
@@ -55,6 +58,11 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         bindPreferenceSummaryToValue(findPreference(PrefUtil.PREF_GRID_SIZE));
 
         mAppContext = getActivity().getApplicationContext();
+
+        // get listPreferredItemHeight value in pixel and set it to mImageSize
+        TypedValue value = new TypedValue();
+        getActivity().getTheme().resolveAttribute(android.R.attr.listPreferredItemHeight, value, true);
+        mImageSize = (int) value.getDimension(getResources().getDisplayMetrics());
 
         mImagePreference = (ImagePreference) findPreference(PrefUtil.PREF_DESIGN_IMAGE_URI);
         mImagePreference.setOnPreferenceClickListener(this);
@@ -113,7 +121,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
                 InputStream stream = null;
                 try {
                     stream = mAppContext.getContentResolver().openInputStream(params[0]);
-                    bitmap = BitmapFactory.decodeStream(stream);
+                    bitmap = ImageUtil.decodeSampledBitmapFromStream(stream, mImageSize, mImageSize);
                 } catch (FileNotFoundException fe) {
                     Timber.w("File was not found:" + fe);
                 } finally {
