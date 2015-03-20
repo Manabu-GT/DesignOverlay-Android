@@ -24,9 +24,6 @@
             </intent-filter>
         </activity>
 
-        <!-- to remove sample activity from the library -->
-        <activity android:name="net.margaritov.preference.colorpicker.Test" tools:node="remove"/>
-
         <service android:name=".service.DesignOverlayService" />
 
     </application>
