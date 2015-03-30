@@ -3,16 +3,17 @@ language: android
 android:
   components:
     # The BuildTools version used by your project
-    - build-tools-22
+    - build-tools-22.0.1
 
     # The SDK version used to compile your project
     - android-22
 
+    # Additional components
+    - extra-android-m2repository
+
 # command to install dependencies
 install:
-  - pip install sauceclient
-  - pip install Appium-Python-Client
-  - pip install pytest
+  - sudo pip install -r requirements.txt
 
 # command to build and run tests
 script:
@@ -24,5 +25,5 @@ addons:
 
 env:
   global:
-    - secure: fJarjAplGGrBQuw8gGiTVnhYK9K1k9g0HBB7OohST9EANHbVUQ/x4umQ2edha1felgleCahGRr4u7Yn0KliLjld4B5cdTdGtDoNy86yiT3nGjJIbgcdPOAuPDZf+1Oy9aWhmVHYmuK26gOBIqOgen5BwOPwvI4mwZePd4DigfkY=
-    - secure: f/LHDLN6O4ODABk3EHe1X/X7HCBjHZ5QAWkKJVLNZOQCMNLwpMPsHhdSQuqDW/f+rFqjPABuF3JsWaX8jcJqkh8/n9u381AwGxZSY0IDzq2Iluo5UKthoR2E4EekR6vTiJf9mmlWQ1lCG817Jyt+GLgwX1CuWyU9r4LhhBXUOl0=
+    - secure: A1jbSplRPc7lRcjT6yY3Z33ynAEmiSzub5ADEXys4VtzjhenRCejkYAyLmNLm4ywbWWhmmZqXT70YPJQTBr5tbZlfHx5P2GRU1MtBvcXSUO+5RJ3swc80UOVvllhfHNuiiraqwSNcWl7skPHxDfBPBe8QOLp4A17JpJEJ8nFqpc=
+    - secure: fFmQjyp/tTloQmWFnNb7CZQsk92kZV7a78J0y0XW1kW+NPauxQ7MHsI9GAsOrEByyGF4xz2eKq37Z+LoMZtvcCgPWz5mt62QFQ2jXDxXckVeYr6JQW6gnXMcCR96V7RYLPHW9HbfOYcchiS2lu5ytogNh3NU35OgAscOTfO0Gtc=

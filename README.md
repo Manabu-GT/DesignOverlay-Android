@@ -1,5 +1,10 @@
-DesignOverlay - for developers and designers [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-DesignOverlay-brightgreen.svg?style=flat)](http://android-arsenal.com/details/3/1654)
+DesignOverlay - for developers and designers
 ===============
+
+[![Build Status](https://travis-ci.org/Manabu-GT/DesignOverlay-Android.svg?branch=master)](https://travis-ci.org/Manabu-GT/DesignOverlay-Android)
+[![Sauce Test Status](https://saucelabs.com/buildstatus/design-overlay)](https://saucelabs.com/u/design-overlay)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-DesignOverlay-brightgreen.svg?style=flat)](http://android-arsenal.com/details/3/1654)
+
 DesignOverlay is an android app which displays a design image with grid lines to facilitate the tedious layout process.
 The grid is especially useful to align to baseline grids as described in [Android Design Guidelines][1].
 
