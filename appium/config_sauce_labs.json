@@ -1,0 +1,11 @@
+[
+   {
+      "platformName":"Android",
+      "platformVersion":"4.4",
+      "deviceName":"Android Emulator",
+      "appPackage":"com.ms_square.android.design.overlay",
+      "appActivity":".activity.SettingsActivity_",
+      "app":"sauce-storage:design_overlay.apk",
+      "appiumVersion":"1.3.6"
+   }
+]
