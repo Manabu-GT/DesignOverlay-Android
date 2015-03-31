@@ -1,0 +1,4 @@
+# requirements.txt for pip install
+sauceclient
+Appium-Python-Client
+pytest

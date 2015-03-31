@@ -10,5 +10,10 @@ build/
 *.iml
 .idea
 
+# Python
+__pycache__/
+*.py[cod]
+appium/pytestdebug.log
+
 # Windows thumbnail db
 .DS_Store

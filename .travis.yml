@@ -1,0 +1,29 @@
+language: android
+
+android:
+  components:
+    # The BuildTools version used by your project
+    - build-tools-22.0.1
+
+    # The SDK version used to compile your project
+    - android-22
+
+    # Additional components
+    - extra-android-m2repository
+
+# command to install dependencies
+install:
+  - sudo pip install -r requirements.txt
+
+# command to build and run tests
+script:
+ - ./gradlew assembleDebug
+ - sh run_tests.sh
+
+addons:
+  sauce_connect: true
+
+env:
+  global:
+    - secure: A1jbSplRPc7lRcjT6yY3Z33ynAEmiSzub5ADEXys4VtzjhenRCejkYAyLmNLm4ywbWWhmmZqXT70YPJQTBr5tbZlfHx5P2GRU1MtBvcXSUO+5RJ3swc80UOVvllhfHNuiiraqwSNcWl7skPHxDfBPBe8QOLp4A17JpJEJ8nFqpc=
+    - secure: fFmQjyp/tTloQmWFnNb7CZQsk92kZV7a78J0y0XW1kW+NPauxQ7MHsI9GAsOrEByyGF4xz2eKq37Z+LoMZtvcCgPWz5mt62QFQ2jXDxXckVeYr6JQW6gnXMcCR96V7RYLPHW9HbfOYcchiS2lu5ytogNh3NU35OgAscOTfO0Gtc=
