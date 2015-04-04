@@ -13,11 +13,14 @@ from appium import SauceTestCase, on_platforms
 
 from time import sleep
 from logging import getLogger, StreamHandler, Formatter, DEBUG
+import os
 import json
 
 # load default platform configurations
 json_file = open('appium/config_sauce_labs.json')
 platforms = json.load(json_file)
+for platform in platforms:
+    platform['build'] = "build-%s" % os.environ.get('TRAVIS_BUILD_NUMBER', 'local')
 json_file.close()
 
 # set up logger

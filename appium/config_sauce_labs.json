@@ -6,8 +6,7 @@
       "appPackage":"com.ms_square.android.design.overlay",
       "appActivity":".activity.SettingsActivity_",
       "app":"sauce-storage:design_overlay.apk",
-      "appiumVersion":"1.3.6",
-      "build":"1.0.2"
+      "appiumVersion":"1.3.6"
    },
    {
       "platformName":"Android",
@@ -16,8 +15,7 @@
       "appPackage":"com.ms_square.android.design.overlay",
       "appActivity":".activity.SettingsActivity_",
       "app":"sauce-storage:design_overlay.apk",
-      "appiumVersion":"1.3.6",
-      "build":"1.0.2"
+      "appiumVersion":"1.3.6"
    },
    {
       "platformName":"Android",
@@ -26,8 +24,7 @@
       "appPackage":"com.ms_square.android.design.overlay",
       "appActivity":".activity.SettingsActivity_",
       "app":"sauce-storage:design_overlay.apk",
-      "appiumVersion":"1.3.6",
-      "build":"1.0.2"
+      "appiumVersion":"1.3.6"
    },
    {
       "platformName":"Android",
@@ -36,7 +33,6 @@
       "appPackage":"com.ms_square.android.design.overlay",
       "appActivity":".activity.SettingsActivity_",
       "app":"sauce-storage:design_overlay.apk",
-      "appiumVersion":"1.3.6",
-      "build":"1.0.2"
+      "appiumVersion":"1.3.6"
    }
 ]
