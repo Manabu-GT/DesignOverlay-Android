@@ -14,14 +14,14 @@ import android.preference.PreferenceManager;
 import android.util.TypedValue;
 import android.widget.Toast;
 
-import com.ms.square.android.util.AppUtil;
-import com.ms.square.android.util.ToastMaster;
 import com.ms_square.android.design.overlay.BuildConfig;
 import com.ms_square.android.design.overlay.R;
 import com.ms_square.android.design.overlay.task.SafeAsyncTask;
 import com.ms_square.android.design.overlay.util.ImageUtil;
 import com.ms_square.android.design.overlay.util.PrefUtil;
 import com.ms_square.android.design.overlay.view.ImagePreference;
+import com.ms_square.android.util.AppUtil;
+import com.ms_square.android.util.ToastMaster;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

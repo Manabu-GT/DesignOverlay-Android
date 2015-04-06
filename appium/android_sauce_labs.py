@@ -13,14 +13,18 @@ from appium import SauceTestCase, on_platforms
 
 from time import sleep
 from logging import getLogger, StreamHandler, Formatter, DEBUG
-import os
+from os import environ
 import json
 
 # load default platform configurations
 json_file = open('appium/config_sauce_labs.json')
 platforms = json.load(json_file)
 for platform in platforms:
-    platform['build'] = "build-%s" % os.environ.get('TRAVIS_BUILD_NUMBER', 'local')
+    platform['app'] = "sauce-storage:%s" % environ.get('SAUCE_APK_FILE')
+    platform['customData'] = {'commit': environ.get('TRAVIS_COMMIT', environ.get('SAUCE_COMMIT')),
+                              'versionName': environ.get('SAUCE_APK_VERSION_NAME'),
+                              'versionCode': environ.get('SAUCE_APK_VERSION_CODE')}
+    platform['build'] = "build-%s" % environ.get('TRAVIS_BUILD_NUMBER', 'local')
 json_file.close()
 
 # set up logger

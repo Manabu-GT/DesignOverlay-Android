@@ -16,9 +16,8 @@ pip install pytest
 ```
 
 ## how to run (SauceLabs)
-To see logging statements as they are executed, pass the -s flag to py.test.
-For configuration, look at the config_sauce_labs.json.example.
+For configuration, look at the config_sauce_labs.json.
 
 ```shell
-py.test -s appium/android_sauce_labs.py
+./gradlew sauceLabsDebug
 ```

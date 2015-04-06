@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 
-import com.ms.square.android.util.UIUtil;
+import com.ms_square.android.util.DimenUtil;
 
 public class PrefUtil {
 
@@ -57,7 +57,7 @@ public class PrefUtil {
     }
 
     public static int getGridSize(Context context) {
-        return (int) UIUtil.convertToPixelFromDip(context,
+        return (int) DimenUtil.convertToPixelFromDip(context,
                 Float.parseFloat(getSharedPrefs(context).getString(PREF_GRID_SIZE, "4")));
     }
 

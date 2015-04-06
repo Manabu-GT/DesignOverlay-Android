@@ -1,9 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
-
-repositories {
-    maven { url 'http://Manabu-GT.github.com/android-util/mvn-repo' }
-}
+apply plugin: 'saucelabs'
 
 configurations.all {
     // check for updates every build for changing modules
@@ -70,6 +67,10 @@ android {
             }
         }
     }
+
+    sauceLabsConfig {
+        testCommand "py.test -s appium/android_sauce_labs.py"
+    }
 }
 
 dependencies {
@@ -93,10 +94,7 @@ dependencies {
     compile "com.jakewharton.timber:timber:${project.timberVersion}"
 
     // Android Utility Library
-    compile ("com.ms.square:android-util:${project.androidUtilVersion}") {
-        // tell Gradle to check for updated versions every time
-        changing = true;
-    }
+    compile "com.ms-square:android-util:${project.androidUtilVersion}"
 }
 
 // for Android Annotations

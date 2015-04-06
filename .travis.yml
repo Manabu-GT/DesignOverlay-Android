@@ -17,8 +17,7 @@ install:
 
 # command to build and run tests
 script:
- - ./gradlew assembleDebug
- - sh run_tests.sh
+ - ./gradlew sauceLabsDebug
 
 addons:
   sauce_connect: true

@@ -7,8 +7,8 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.ms.square.android.util.UIUtil;
 import com.ms_square.android.design.overlay.R;
+import com.ms_square.android.util.DimenUtil;
 
 import timber.log.Timber;
 
@@ -31,7 +31,7 @@ public class GridView extends View {
     public GridView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        final float defaultLineWidth = UIUtil.convertToPixelFromDip(context, 1f); // 1dp
+        final float defaultLineWidth = DimenUtil.convertToPixelFromDip(context, 1f); // 1dp
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.GridView);
         mPaint.setColor(typedArray.getColor(R.styleable.GridView_lineColor, 0x7732cd32));
