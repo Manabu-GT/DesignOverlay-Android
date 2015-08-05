@@ -126,7 +126,11 @@ public class DesignOverlayService extends Service {
                             stream = getContentResolver().openInputStream(params[0]);
                             bitmap = BitmapFactory.decodeStream(stream);
                         } catch (FileNotFoundException fe) {
-                            Timber.w("File was not found:" + fe);
+                            Timber.w("File was not found: %s", fe.toString());
+                        } catch (SecurityException se) {
+                            Timber.w("No longer have access permission to the uri: %s", se.toString());
+                            // clear stored image Uri
+                            PrefUtil.setDesignImageUri(getApplicationContext(), null);
                         } finally {
                             try {
                                 if (stream != null) {

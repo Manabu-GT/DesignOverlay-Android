@@ -44,7 +44,11 @@ public class PrefUtil {
 
     public static void setDesignImageUri(Context context, Uri uri) {
         SharedPreferences.Editor editor = getEditor(context);
-        editor.putString(PREF_DESIGN_IMAGE_URI, uri.toString());
+        if (uri != null) {
+            editor.putString(PREF_DESIGN_IMAGE_URI, uri.toString());
+        } else {
+            editor.remove(PREF_DESIGN_IMAGE_URI);
+        }
         apply(editor);
     }
 
