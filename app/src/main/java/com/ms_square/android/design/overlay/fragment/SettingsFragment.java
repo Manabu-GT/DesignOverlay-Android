@@ -83,7 +83,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
             if (resultCode == Activity.RESULT_OK && data != null) {
                 final Uri uri = data.getData();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    // needs to take the persistable permission for post kit-kat devices
+                    // needs to take the persistable permission for post kitkat devices
                     mAppContext.getContentResolver().takePersistableUriPermission(uri,
                             Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 }
@@ -100,6 +100,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
+                intent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
                 intent.setType("image/*");
                 startActivityForResult(intent, REQUEST_CODE_IMAGE);
             } else {
@@ -123,7 +124,11 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
                     stream = mAppContext.getContentResolver().openInputStream(params[0]);
                     bitmap = ImageUtil.decodeSampledBitmapFromStream(stream, mImageSize, mImageSize);
                 } catch (FileNotFoundException fe) {
-                    Timber.w("File was not found:" + fe);
+                    Timber.w("File was not found: %s", fe.toString());
+                } catch (SecurityException se) {
+                    Timber.w("Probably no longer have access permission to the uri: %s", se.toString());
+                    // clear stored image Uri
+                    PrefUtil.setDesignImageUri(mAppContext, null);
                 } finally {
                     try {
                         if (stream != null) {
