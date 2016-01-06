@@ -47,7 +47,7 @@ public class GridView extends View {
      */
     public void updateGridSize(int newGridSize) {
         mGridSize = newGridSize;
-        updateGrid(getWidth(), getHeight());
+        updateGrid(getWidth(), getHeight(),true,true);
         invalidate();
     }
 
@@ -56,7 +56,7 @@ public class GridView extends View {
         invalidate();
     }
 
-    private void updateGrid(int width, int height) {
+    private void updateGrid(int width, int height, boolean alignRight, boolean alignBottom) {
         int numHorizontalLines = height / mGridSize;
         int numVerticalLines = width / mGridSize;
 
@@ -66,24 +66,34 @@ public class GridView extends View {
         if (numHorizontalPoints + numVerticalPoints > 0) {
             mPoints = new float[numHorizontalPoints + numVerticalPoints];
 
+            int positionShift = 0;
+            if (alignRight) {
+                positionShift = - (mGridSize - height % mGridSize);
+            }
+
             // set up horizontal lines
             float gap = mGridSize;
             for (int i = 0; i <= numHorizontalLines; i++) {
                 int base = i * 4;
                 mPoints[base] = 0f;
-                mPoints[base + 1] = gap;
+                mPoints[base + 1] = gap + positionShift;
                 mPoints[base + 2] = (float) width;
-                mPoints[base + 3] = gap;
+                mPoints[base + 3] = gap + positionShift;
                 gap = gap + mGridSize;
+            }
+
+            positionShift = 0;
+            if (alignBottom) {
+                positionShift = - (mGridSize - width % mGridSize);
             }
 
             // set up vertical lines
             gap = mGridSize;
             for (int i = 0; i <= numVerticalLines; i++) {
                 int base = i * 4 + numHorizontalPoints;
-                mPoints[base] = gap;
+                mPoints[base] = gap + positionShift;
                 mPoints[base + 1] = 0f;
-                mPoints[base + 2] = gap;
+                mPoints[base + 2] = gap + positionShift;
                 mPoints[base + 3] = (float) height;
                 gap = gap + mGridSize;
             }
@@ -96,7 +106,7 @@ public class GridView extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         Timber.d("SizeChanged: %d, %d, %d, %d", w, h, oldw, oldh);
-        updateGrid(w, h);
+        updateGrid(w, h,true,true);
     }
 
     @Override
