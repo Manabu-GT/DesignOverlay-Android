@@ -19,6 +19,8 @@ public class GridView extends View {
     private int mGridSize;
 
     private float[] mPoints;
+    private boolean mAlignBottom;
+    private boolean mAlignRight;
 
     public GridView(Context context) {
         this(context, null);
@@ -45,9 +47,12 @@ public class GridView extends View {
      *
      * @param newGridSize - in pixels
      */
-    public void updateGridSize(int newGridSize) {
+    public void updateGridSize(int newGridSize, boolean alignRight, boolean alignBottom) {
         mGridSize = newGridSize;
-        updateGrid(getWidth(), getHeight(),true,true);
+        mAlignRight = alignRight;
+        mAlignBottom = alignBottom;
+
+        updateGrid(getWidth(), getHeight());
         invalidate();
     }
 
@@ -56,7 +61,7 @@ public class GridView extends View {
         invalidate();
     }
 
-    private void updateGrid(int width, int height, boolean alignRight, boolean alignBottom) {
+    private void updateGrid(int width, int height) {
         int numHorizontalLines = height / mGridSize;
         int numVerticalLines = width / mGridSize;
 
@@ -67,7 +72,7 @@ public class GridView extends View {
             mPoints = new float[numHorizontalPoints + numVerticalPoints];
 
             int positionShift = 0;
-            if (alignRight) {
+            if (mAlignBottom) {
                 positionShift = - (mGridSize - height % mGridSize);
             }
 
@@ -83,7 +88,7 @@ public class GridView extends View {
             }
 
             positionShift = 0;
-            if (alignBottom) {
+            if (mAlignRight) {
                 positionShift = - (mGridSize - width % mGridSize);
             }
 
@@ -106,7 +111,7 @@ public class GridView extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         Timber.d("SizeChanged: %d, %d, %d, %d", w, h, oldw, oldh);
-        updateGrid(w, h,true,true);
+        updateGrid(w, h);
     }
 
     @Override

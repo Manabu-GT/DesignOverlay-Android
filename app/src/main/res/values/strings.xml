@@ -24,6 +24,8 @@
     <string name="pref_grid_enabled_title">Enabled</string>
     <string name="pref_grid_size_title">Size</string>
     <string name="pref_grid_size_summary">Size: %1$s dp</string>
+    <string name="pref_align_right_title">Align right</string>
+    <string name="pref_align_bottom_title">Align bottom</string>
     <string name="pref_grid_color_title">Color</string>
     <string name="pref_grid_color_summary">Choose grid line color</string>
 

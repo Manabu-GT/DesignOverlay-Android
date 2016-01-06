@@ -29,6 +29,14 @@
             android:entries="@array/grid_size_entries"
             android:entryValues="@array/grid_size_entry_values"
             android:defaultValue="4"/>
+        <CheckBoxPreference
+            android:key="pref_align_right"
+            android:defaultValue="false"
+            android:title="@string/pref_align_right_title" />
+        <CheckBoxPreference
+            android:key="pref_align_bottom"
+            android:defaultValue="false"
+            android:title="@string/pref_align_bottom_title" />
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="pref_grid_color"
             android:title="@string/pref_grid_color_title"

@@ -19,6 +19,10 @@ public class PrefUtil {
 
     public static final String PREF_GRID_ENABLED = "pref_grid_enabled";
 
+    public static final String PREF_ALIGN_RIGHT = "pref_align_right";
+
+    public static final String PREF_ALIGN_BOTTOM = "pref_align_bottom";
+
     public static final String PREF_GRID_SIZE = "pref_grid_size";
 
     public static final String PREF_GRID_COLOR = "pref_grid_color";
@@ -63,6 +67,14 @@ public class PrefUtil {
     public static int getGridSize(Context context) {
         return (int) DimenUtil.convertToPixelFromDip(context,
                 Float.parseFloat(getSharedPrefs(context).getString(PREF_GRID_SIZE, "4")));
+    }
+
+    public static boolean isAlignRight(Context context) {
+        return getSharedPrefs(context).getBoolean(PREF_ALIGN_RIGHT, false);
+    }
+
+    public static boolean isAlignBottom(Context context) {
+        return getSharedPrefs(context).getBoolean(PREF_ALIGN_BOTTOM, false);
     }
 
     public static int getGridColor(Context context) {
