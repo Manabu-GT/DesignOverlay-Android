@@ -173,7 +173,10 @@ public class DesignOverlayService extends Service {
 
     private void updateGridSize() {
         if (mGridView != null) {
-            mGridView.updateGridSize(PrefUtil.getGridSize(DesignOverlayService.this));
+            final int gridSize = PrefUtil.getGridSize(DesignOverlayService.this);
+            final boolean alignRight = PrefUtil.isAlignRight(DesignOverlayService.this);
+            final boolean alignBottom = PrefUtil.isAlignBottom(DesignOverlayService.this);
+            mGridView.updateGridSize(gridSize, alignRight, alignBottom);
         }
     }
 
@@ -258,6 +261,14 @@ public class DesignOverlayService extends Service {
                     break;
                 }
                 case PrefUtil.PREF_GRID_SIZE: {
+                    updateGridSize();
+                    break;
+                }
+                case PrefUtil.PREF_ALIGN_RIGHT: {
+                    updateGridSize();
+                    break;
+                }
+                case PrefUtil.PREF_ALIGN_BOTTOM: {
                     updateGridSize();
                     break;
                 }

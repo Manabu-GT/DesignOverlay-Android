@@ -19,6 +19,8 @@ public class GridView extends View {
     private int mGridSize;
 
     private float[] mPoints;
+    private boolean mAlignBottom;
+    private boolean mAlignRight;
 
     public GridView(Context context) {
         this(context, null);
@@ -45,8 +47,11 @@ public class GridView extends View {
      *
      * @param newGridSize - in pixels
      */
-    public void updateGridSize(int newGridSize) {
+    public void updateGridSize(int newGridSize, boolean alignRight, boolean alignBottom) {
         mGridSize = newGridSize;
+        mAlignRight = alignRight;
+        mAlignBottom = alignBottom;
+
         updateGrid(getWidth(), getHeight());
         invalidate();
     }
@@ -66,24 +71,34 @@ public class GridView extends View {
         if (numHorizontalPoints + numVerticalPoints > 0) {
             mPoints = new float[numHorizontalPoints + numVerticalPoints];
 
+            int positionShift = 0;
+            if (mAlignBottom) {
+                positionShift = - (mGridSize - height % mGridSize);
+            }
+
             // set up horizontal lines
             float gap = mGridSize;
             for (int i = 0; i <= numHorizontalLines; i++) {
                 int base = i * 4;
                 mPoints[base] = 0f;
-                mPoints[base + 1] = gap;
+                mPoints[base + 1] = gap + positionShift;
                 mPoints[base + 2] = (float) width;
-                mPoints[base + 3] = gap;
+                mPoints[base + 3] = gap + positionShift;
                 gap = gap + mGridSize;
+            }
+
+            positionShift = 0;
+            if (mAlignRight) {
+                positionShift = - (mGridSize - width % mGridSize);
             }
 
             // set up vertical lines
             gap = mGridSize;
             for (int i = 0; i <= numVerticalLines; i++) {
                 int base = i * 4 + numHorizontalPoints;
-                mPoints[base] = gap;
+                mPoints[base] = gap + positionShift;
                 mPoints[base + 1] = 0f;
-                mPoints[base + 2] = gap;
+                mPoints[base + 2] = gap + positionShift;
                 mPoints[base + 3] = (float) height;
                 gap = gap + mGridSize;
             }
