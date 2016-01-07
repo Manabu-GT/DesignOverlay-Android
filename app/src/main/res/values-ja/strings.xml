@@ -23,6 +23,10 @@
     <string name="pref_grid_enabled_title">表示</string>
     <string name="pref_grid_size_title">サイズ</string>
     <string name="pref_grid_size_summary">サイズ: %1$s dp</string>
+
+    <string name="pref_align_right_title">右に揃える</string>
+    <string name="pref_align_bottom_title">下に揃える</string>
+
     <string name="pref_grid_color_title">色</string>
     <string name="pref_grid_color_summary">グリッド線の色を選択</string>
 
