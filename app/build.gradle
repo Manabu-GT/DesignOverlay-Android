@@ -21,7 +21,7 @@ android {
             }
             // pick first six characters
             return stdout.toString().trim().substring(0, 6)
-        } catch(Exception e) {
+        } catch (Exception e) {
             return ""
         }
     }
@@ -30,15 +30,15 @@ android {
         applicationId "com.ms_square.android.design.overlay"
         minSdkVersion project.ANDROID_BUILD_MIN_SDK_VERSION
         targetSdkVersion project.ANDROID_BUILD_TARGET_SDK_VERSION
-        versionCode 4
-        versionName "1.0.3"
+        versionCode 5
+        versionName "1.0.4"
     }
 
     signingConfigs {
         release {
             def Properties keyProps = new Properties()
             // double check if keystore.properties exists to avoid exception
-            if(file("../keystore.properties").exists()) {
+            if (file("../keystore.properties").exists()) {
                 keyProps.load(new FileInputStream(file('../keystore.properties')))
             }
             storeFile keyProps["storeFile"] != null ? file(keyProps["storeFile"]) : null
@@ -62,7 +62,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
             // check if keystore.properties exists in the root
-            if(file("../keystore.properties").exists()) {
+            if (file("../keystore.properties").exists()) {
                 signingConfig signingConfigs.release
             }
         }
