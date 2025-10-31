@@ -1,4 +1,4 @@
-DesignOverlay - for developers and designers
+[Archived] DesignOverlay - for developers and designers
 ===============
 
 [![Build Status](https://travis-ci.org/Manabu-GT/DesignOverlay-Android.svg?branch=master)](https://travis-ci.org/Manabu-GT/DesignOverlay-Android)
